@@ -1,7 +1,21 @@
 .App {
   text-align: center;
 }
-
+body{
+  padding: 20px 60px;
+}
+@media only screen and (max-width: 890px) {
+  /* For mobile phones: */
+  body{
+      padding: 20px;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  /* For mobile phones: */
+  body{
+      padding: 10px;
+  }
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
