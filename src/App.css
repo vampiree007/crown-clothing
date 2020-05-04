@@ -3,6 +3,7 @@
 }
 body{
   padding: 20px 60px;
+  box-sizing: border-box;
 }
 @media only screen and (max-width: 890px) {
   /* For mobile phones: */
