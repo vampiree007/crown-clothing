@@ -19,6 +19,41 @@ firebase.initializeApp(firebaseConfig);
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
+//FireStore Setup ------ STARTS HERE ------
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+  //here user is onw who logged with google
+  if(!userAuth) return;
+
+  //Query document use firestore.doc('path'), while Query collection is firestore.collection('coll_name')
+  const userRef = firestore.doc(`users/${userAuth.uid}`)
+
+  //Snapshot carries no data but has a field called 'Exists' whose value is either true or false.
+  //False indicates absense of user in database.
+  const snapshot = await userRef.get()
+  //If user doesn't exists that is snapshot.exists = false
+  if(!snapshot.exists) {
+    const {displayName, email} = userAuth;
+    const createdOn = new Date();
+
+    try{
+
+      //Setting and creating user in our database
+      await userRef.set({
+        displayName,
+        email,
+        createdOn,
+        ...additionalData
+      });
+    } catch (err) {
+      console.log('error creating user', err.message);
+    }
+  }
+
+  return userRef;
+}
+
+
+// Google Authentication Setup
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({
     'promt': 'select_account'
