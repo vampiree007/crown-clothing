@@ -19,8 +19,16 @@ firebase.initializeApp(firebaseConfig);
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
+// Google Authentication Setup
+const provider = new firebase.auth.GoogleAuthProvider();
+provider.setCustomParameters({
+    'promt': 'select_account'
+});
+export const SignInWithGoogle = () => auth.signInWithPopup(provider);
+
 //FireStore Setup ------ STARTS HERE ------
 export const createUserProfileDocument = async (userAuth, additionalData) => {
+  console.log(userAuth)
   //here user is onw who logged with google
   if(!userAuth) return;
 
@@ -51,14 +59,6 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 
   return userRef;
 }
-
-
-// Google Authentication Setup
-const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({
-    'promt': 'select_account'
-});
-export const SignInWithGoogle = () => auth.signInWithPopup(provider);
 
 export default firebase;
 

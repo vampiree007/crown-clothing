@@ -25,7 +25,7 @@ class SignUp extends React.Component{
             //using auth.createUserWithEmailAndPassword(email, password) returns userAuth object
             //that can be used to create user in database.
             createUserProfileDocument(user, {displayName});
-            this.setState({displayName: '', email: '', passwordConfirm:'', passwordConfirm: ''})
+            this.setState({displayName: '', email: '', password:'', passwordConfirm: ''})
         } catch(err) {
             console.log('error signing up', err.message)
         }
