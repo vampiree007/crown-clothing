@@ -28,7 +28,7 @@ export const SignInWithGoogle = () => auth.signInWithPopup(provider);
 
 //FireStore Setup ------ STARTS HERE ------
 export const createUserProfileDocument = async (userAuth, additionalData) => {
-  console.log(userAuth)
+  //console.log(userAuth)
   //here user is onw who logged with google
   if(!userAuth) return;
 

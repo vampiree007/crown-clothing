@@ -3,9 +3,9 @@ import './header.styles.scss';
 import {Link} from 'react-router-dom';
 import {ReactComponent as Logo} from '../../assets/original.svg';
 import {auth} from '../../firebase/firebase.utilities.js';
-import { connect } from 'react-redux';
 import CartIcon from '../cart/cart-icon.component';
 import CartDropDown from '../cart-dropdown/cart-dropdown.component';
+import { connect } from 'react-redux';
 
 const Header = ({currentUser, hidden}) => (
     <div className="header">
@@ -24,7 +24,7 @@ const Header = ({currentUser, hidden}) => (
             }
             <CartIcon/>
             {
-                hidden? <CartDropDown/> : null 
+                hidden? null : <CartDropDown/> 
             }
         </div>
         
